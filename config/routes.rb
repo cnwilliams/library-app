@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   get "libraries/:id/edit", to: "libraries#edit", as: "edit_library"
 
-  delete "/libraries/:id", to: "libraries#destroy"
+  delete "/libraries/:id", to: "libraries#destroy", as: "destroy_library"
 
 
   ## library users ##

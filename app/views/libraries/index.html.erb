@@ -1,12 +1,13 @@
 
+<% if current_user %>
+  <button class="btn"><%= link_to "Add a new Library", new_library_path %></button>
+<% end %>
 
 <% @libraries.each do |library| %>
 <div>
-  <h4><%= link_to "#{library.name}", library_path(library) %></h4>
+  <h5><%= link_to "#{library.name}", library_path(library) %></h5>
 
   <% if current_user %>
-  <%= button_to "Join", library_users_path(library) %>
+    <button class="btn btn-default"><%= link_to "Join", library_users_path(library) %></button>
   <% end %>
 </div>
-
-<% end %>

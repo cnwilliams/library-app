@@ -16,13 +16,11 @@ class LibrariesController < ApplicationController
     end
   end
 
-  # might be broken
   def show
     library_id = params[:id]
     @library = Library.find_by_id(library_id)
   end
 
-  # might be broken
   def edit
     library_id = params[:id]
     library = Library.find_by_id(library_id)
@@ -45,7 +43,6 @@ class LibrariesController < ApplicationController
     library.destroy
 
     redirect_to library_path
-
   end
 
   private
