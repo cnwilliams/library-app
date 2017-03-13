@@ -15,4 +15,8 @@ module SessionsHelper
     redirect_to root_path
   end
 
+  def logged_in?
+    !current_user.nil?
+  end
+
 end
