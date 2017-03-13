@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get "/users/:id", to: "users#show", as: "user"
 
+  get "/users/account/:id", to: "users#account", as: "user_account"
+
 
   ## sessions ##
 

@@ -1,28 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/components/accordion.min.js"></script>
-
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- bootstrap css -->
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- application stylesheet -->
+    <%= stylesheet_link_tag :application, media: :all %>
+
+
     <title>LibApp</title>
 
   </head>
 
   <body>
 
+    <div class="jumbotron">
+
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li><%= link_to "Home", root_path %></li>
+                  <li><%= link_to "Libraries", libraries_path %></li>
+
+                  <% if current_user %>
+                    <li class="active"><%= link_to "Profile", user_path(current_user) %></li>
+                    <li><%= link_to "View Your Libraries", user_libraries_path(current_user) %></li>
+                    <li><%= link_to "View Account", user_path(current_user) %></li>
+                  <% else %>
+                    <li><%= link_to "Create Account", new_user_path %></li>
+                    <li><%= link_to "Log In", login_path %></li>
+                  <% end %>
+
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <% if current_user %>
+                    <li class="active"><%= link_to "Log Out", logout_path %></li>
+                    <li><%= link_to "Logged in as #{current_user.first_name}", user_path(current_user) %></a></li>
+                    <% end %>
+
+                </ul>
+              </div><!--/.nav-collapse -->
+              <h1 class="text-center">Library App</h1>
+            </div>
+
+
+
+    </div>
     <ul>
-      <% if current_user %>
-        <li><%= link_to "Profile", user_path(current_user) %></li>
-        <li><%= link_to "Log Out", logout_path %></li>
-      <% else %>
-        <li><%= link_to "Create Account", new_user_path %></li>
-        <li><%= link_to "Log In", login_path %></li>
-      <% end %>
-    </ul>
+
 
     <% flash.each do |name, msg| %>
       <p>
@@ -31,5 +59,8 @@
     <% end %>
 
     <%= yield %>
+
+    <!-- application javascript file -->
+    <%= javascript_include_tag :application %>
   </body>
 </html>

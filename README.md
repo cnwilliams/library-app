@@ -23,4 +23,5 @@ Things you may want to cover:
 
 * ...
 
-# How do you decide what goes in the sessions module vs the Sessions controller?!
+# Images
+* Book icon -- http://www.flaticon.com/free-icon/library_201571#term=book&page=1&position=25
