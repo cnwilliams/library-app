@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get "/users/:id", to: "users#show", as: "user"
 
+
   ## sessions ##
 
   get "/login", to: "sessions#new"
@@ -17,5 +18,19 @@ Rails.application.routes.draw do
 
   post "/sessions", to: "sessions#create"
 
+
+  ## libraries ##
+
+  get "/libraries", to: "libraries#index"
+
+  get "/libraries/new", to: "libraries#new", as: "new_library"
+
+  post "/libraries", to: "libraries#create"
+
+  get "/libraries/:id", to: "libraries#show", as: "library"
+
+  get "libraries/:id/edit", to: "libraries#edit", as: "edit_library"
+
+  delete "/libraries/:id", to: "libraries#destroy"
 
 end
