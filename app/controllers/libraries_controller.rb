@@ -1,5 +1,7 @@
 class LibrariesController < ApplicationController
 
+  before_action :set_library, only: [:show, :update, :destroy, :edit]
+
   def index
     @libraries = Library.all
   end
@@ -17,31 +19,20 @@ class LibrariesController < ApplicationController
   end
 
   def show
-    library_id = params[:id]
-    @library = Library.find_by_id(library_id)
+    @library = set_library
   end
 
   def edit
-    library_id = params[:id]
-    library = Library.find_by_id(library_id)
-    redirect_to library_path(library)
+    redirect_to library_path(set_library)
   end
 
   def update
-    library_id = params[:id]
-    library = Library.find_by_id(library_id)
-
-    library.update_attributes(library_params)
-
+    set_library.update_attributes(library_params)
     redirect_to library_path(library)
   end
 
   def destroy
-    library_id = params[:id]
-    library = Library.find_by_id(library_id)
-
-    library.destroy
-
+    set_library.destroy
     redirect_to library_path
   end
 
@@ -49,6 +40,11 @@ class LibrariesController < ApplicationController
 
   def library_params
     params.require(:library).permit(:name, :floor_count, :floor_area)
+  end
+
+  def set_library
+    library_id = params[:id]
+    library = Library.find_by_id(library_id)
   end
 
 
